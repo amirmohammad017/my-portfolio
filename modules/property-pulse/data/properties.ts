@@ -1,0 +1,24 @@
+import rawProperties from "./properties.json";
+
+export type Property = {
+  _id: string;
+  name: string;
+  type: string;
+  description?: string | null;
+  location?: { street: string; city: string; state: string; zipcode: string } | null | undefined;
+  beds: number;
+  baths: number;
+  square_feet: number;
+  amenities: string[];
+  rates: { nightly?: number; weekly?: number; monthly?: number };
+  seller_info: { name: string; email: string; phone: string };
+  images: string[];
+  is_featured: boolean;
+};
+
+// Temporary local data for the UI exercise. Database reads replace this later.
+export const properties: Property[] = rawProperties;
+
+export function propertyImage(fileName: string) {
+  return `/property-pulse/images/properties/${fileName}`;
+}

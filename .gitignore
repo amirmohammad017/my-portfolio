@@ -1,0 +1,16 @@
+node_modules
+.next
+.env
+.env.local
+*.tsbuildinfo
+next-env.d.ts
+/public/uploads
+/storage/uploads
+/property-pulse/node_modules
+/property-pulse/.next
+/.vercel
+/out
+*.log
+.DS_Store
+
+.env.development

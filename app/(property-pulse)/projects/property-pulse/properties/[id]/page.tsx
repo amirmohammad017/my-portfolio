@@ -1,0 +1,144 @@
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+  FaArrowLeft,
+  FaBath,
+  FaBed,
+  FaCheck,
+  FaMapMarkerAlt,
+  FaRulerCombined,
+  FaTimes,
+} from "react-icons/fa";
+import connectDb from "@/modules/property-pulse/config/database";
+import Property, { PropertyDataWithId } from "@/modules/property-pulse/models/Property";
+import { convertToSerializableObject } from "@/modules/property-pulse/utils/convertToObject";
+import BookmarkButton from "@/modules/property-pulse/components/BookmarkButton";
+import PropertyContactForm from "@/modules/property-pulse/components/PropertyContactForm";
+import ShareButtons from "@/modules/property-pulse/components/ShareButtons";
+import PropertyImages from "@/modules/property-pulse/components/PropertyImages";
+
+export default async function PropertyPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  await connectDb();
+  // Read the [id] route parameter and find the matching property.
+  const { id } = await params;
+  const rawProperty = await Property.findById(id).lean();
+  // Show the 404 page when no property matches the URL.
+  if (!rawProperty) notFound();
+
+  const property = convertToSerializableObject(
+    rawProperty,
+  ) as unknown as PropertyDataWithId;
+
+  return (
+    <>
+      {/* Main image and link back to the property list */}
+      <div className="max-w-7xl mx-auto relative h-72 md:h-100">
+        <Image
+          src={property.images[0]}
+          alt={property.name}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      <div className="max-w-7xl mx-auto py-6 px-6">
+        <Link
+          href="/projects/property-pulse/properties"
+          className="text-blue-600 hover:text-blue-700 flex items-center gap-2"
+        >
+          <FaArrowLeft /> Back to Properties
+        </Link>
+      </div>
+
+      {/* Property details on the left and contact information on the right */}
+      <section className="bg-blue-50 py-10 px-6 grow">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[70%_28%] gap-6">
+          {/*property details */}
+          <div>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <p className="text-gray-500 mb-4">{property.type}</p>
+              <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
+              <p className="text-orange-700 flex items-start gap-2">
+                <FaMapMarkerAlt className="shrink-0 mt-1" />
+                {property.location?.street}, {property.location?.city},{" "}
+                {property.location?.state} {property.location?.zipcode}
+              </p>
+              <h2 className="text-lg font-bold my-6 bg-gray-800 text-white p-2">
+                Rates & Options
+              </h2>
+              {/* Nightly, weekly, and monthly rates; a dash means no rate is available. */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                {(["nightly", "weekly", "monthly"] as const).map((period) => (
+                  <div
+                    key={period}
+                    className="flex justify-center items-center border-b sm:border-b-0 pb-3 sm:pb-0"
+                  >
+                    <span className="text-gray-500 text-xl font-bold capitalize mr-2">
+                      {period}
+                    </span>
+                    <span className="text-2xl font-bold text-blue-500">
+                      {property.rates?.[period] ? (
+                        `$${property.rates[period]?.toString()}`
+                      ) : (
+                        <FaTimes className="text-red-700" />
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* --- Description & Details */}
+            <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+              <h2 className="text-lg font-bold mb-6">Description & Details</h2>
+              <div className="flex flex-wrap justify-center gap-6 text-blue-500 mb-4 text-xl">
+                <span>
+                  <FaBed className="inline mr-2" />
+                  {property.beds} Beds
+                </span>
+                <span>
+                  <FaBath className="inline mr-2" />
+                  {property.baths} Baths
+                </span>
+                <span>
+                  <FaRulerCombined className="inline mr-2" />
+                  {property.square_feet.toString()} sqft
+                </span>
+              </div>
+              <p className="text-gray-600">{property.description}</p>
+            </div>
+
+            {/* --- Amenities: Render each item in the amenities array. */}
+            <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+              <h2 className="text-lg font-bold mb-6">Amenities</h2>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {property.amenities.map((amenity) => (
+                  <li key={amenity}>
+                    <FaCheck className="inline text-green-600 mr-2" />
+                    {amenity}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* --- Contact Property Manager: Contact details are shown here; messaging comes in a later stage. */}
+          <aside className="space-y-4">
+            <BookmarkButton property={property} />
+            <PropertyContactForm property={property} />
+            <ShareButtons property={property} />
+          </aside>
+        </div>
+      </section>
+
+      {/* Gallery of all images for this property (Client Component with lightbox) */}
+      <PropertyImages images={property.images} name={property.name} />
+    </>
+  );
+}

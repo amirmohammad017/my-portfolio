@@ -1,0 +1,11 @@
+{
+  "app": "amirmohammad-dev",
+  "platform": "next",
+  "port": 3000,
+  "build": {
+    "location": "iran"
+  },
+  "next": {
+    "nodeVersion": "22"
+  }
+}
