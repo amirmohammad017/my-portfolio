@@ -67,7 +67,7 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <Link className="flex shrink-0 items-center" href="/projects/property-pulse">
-              <Image
+              <Image unoptimized
                 width={0}
                 height={0}
                 className="h-10 w-auto"
@@ -164,7 +164,7 @@ const Navbar = () => {
                   >
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
-                    <Image
+                    <Image unoptimized
                       width={40}
                       height={40}
                       className="h-9 w-9 rounded-full object-cover"

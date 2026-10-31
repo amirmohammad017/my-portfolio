@@ -26,13 +26,12 @@ export default function ProjectCard({ data }: { data: ProjectItem }) {
         rel={isEmbedded ? undefined : "noopener noreferrer"}
         className="mb-4 flex h-60 w-full items-center justify-center overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5"
       >
-        <Image
+        <Image unoptimized
           src={image?.url || "/images/no-image.png"}
           alt={title}
           width={800}
           height={480}
           className="h-full w-full rounded-lg object-cover transition duration-300 hover:scale-[1.02]"
-          unoptimized={image?.url?.startsWith("/media/")}
         />
       </Link>
 

@@ -24,7 +24,7 @@ export default function PropertyCard({
       <div
         className={`relative h-56 ${featured ? "md:h-auto md:w-2/5 md:shrink-0" : ""}`}
       >
-        <Image
+        <Image unoptimized
           src={property.images[0]}
           alt={property.name}
           fill

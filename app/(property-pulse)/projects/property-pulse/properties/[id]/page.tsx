@@ -38,7 +38,7 @@ export default async function PropertyPage({
     <>
       {/* Main image and link back to the property list */}
       <div className="max-w-7xl mx-auto relative h-72 md:h-100">
-        <Image
+        <Image unoptimized
           src={property.images[0]}
           alt={property.name}
           fill

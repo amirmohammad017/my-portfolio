@@ -34,14 +34,13 @@ export default async function BlogDetailsPage({ params }: PageProps) {
       </span>
 
       <div className="mb-4 overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5">
-        <Image
+        <Image unoptimized
           className="h-auto w-full object-cover"
           src={blog.image?.url || "/images/no-image.png"}
           alt={blog.title}
           width={1200}
           height={720}
           priority
-          unoptimized={blog.image?.url?.startsWith("/media/")}
         />
       </div>
 
