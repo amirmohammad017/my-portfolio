@@ -1,17 +1,16 @@
-import type { NextConfig } from "next";
-
 const hosts = [
   "amirmohammad-dev.s3.ir-central1.arvanstorage.ir",
   "property-pulse.s3.ir-central1.arvanstorage.ir",
   "avatars.githubusercontent.com",
 ];
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     remotePatterns: hosts.map((hostname) => ({
-      protocol: "https" as const,
+      protocol: "https",
       hostname,
-      pathname: "**",
+      pathname: "/**",
     })),
   },
 };
