@@ -1,21 +1,17 @@
 import type { NextConfig } from "next";
 
-const hosts = Array.from(
-  new Set(
-    [
-      process.env.PORTFOLIO_S3_PUBLIC_URL_WITHOUT_PROTOCOL,
-      process.env.ARVAN_CLOUD_S3_PUBLIC_URL_WITHOUT_PROTOCOL,
-      "avatars.githubusercontent.com",
-    ].filter((host): host is string => Boolean(host)),
-  ),
-);
+const hosts = [
+  "amirmohammad-dev.s3.ir-central1.arvanstorage.ir",
+  "property-pulse.s3.ir-central1.arvanstorage.ir",
+  "avatars.githubusercontent.com",
+];
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: hosts.map((hostname) => ({
       protocol: "https" as const,
       hostname,
-      pathname: "**",
+      pathname: "/**",
     })),
   },
 };
