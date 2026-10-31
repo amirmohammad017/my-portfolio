@@ -10,7 +10,7 @@ export default async function ProjectPage() {
   const projects = await getProjects();
 
   return (
-    <div className="mx-auto grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(300px,1fr))] justify-center gap-6 px-4">
+    <div className="mx-auto grid max-w-5xl grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-stretch justify-center gap-6 px-4">
       {projects.map((item) => (
         <ProjectCard key={item.slug} data={item} />
       ))}

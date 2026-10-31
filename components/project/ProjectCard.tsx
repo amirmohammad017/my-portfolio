@@ -19,44 +19,48 @@ export default function ProjectCard({ data }: { data: ProjectItem }) {
   const internalPath = internal_path || `/projects/${slug}`;
 
   return (
-    <article className="surface mb-4 w-full rounded-lg p-4">
+    <article className="surface flex h-full w-full flex-col rounded-lg p-4 transition-transform! duration-300 ease-out hover:scale-[1.01]">
       <Link
         href={isEmbedded ? internalPath : view_demo || "#"}
         target={isEmbedded ? undefined : "_blank"}
         rel={isEmbedded ? undefined : "noopener noreferrer"}
-        className="mb-4 flex h-60 w-full items-center justify-center overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5"
+        className="mb-4 flex h-60 w-full shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5"
       >
         <Image
           src={image?.url || "/images/no-image.png"}
           alt={title}
           width={800}
           height={480}
-          className="h-full w-full rounded-lg object-cover transition duration-300 hover:scale-[1.02]"
+          className="h-full w-full rounded-lg object-cover"
         />
       </Link>
 
-      <div className="flex grow flex-col">
-        <h3 className="mb-4 text-center text-xl font-bold capitalize">
-          {title}
-        </h3>
+      <h3 className="mb-4 truncate text-center text-xl font-bold capitalize">
+        {title}
+      </h3>
 
-        <p className="grow text-xs text-slate-600 dark:text-white/80">
-          {description}
-        </p>
+      {/* ناحیه‌ی ثابت برای توضیحات */}
+      <p className="line-clamp-3 h-12 text-xs leading-4 text-slate-600 dark:text-white/80">
+        {description}
+      </p>
 
+      {/* ناحیه‌ی ثابت برای بج‌ها؛ بیش از دو ردیف پنهان می‌شود */}
+      <div className="my-3 h-14 overflow-hidden">
         {technologies?.length ? (
-          <ul className="my-3 flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-2">
             {technologies.map((tech) => (
               <li
                 key={tech}
-                className="rounded-full border border-black/10 px-2 py-0.5 text-[11px] text-slate-600 dark:border-white/15 dark:text-white/70"
+                className="rounded-full border border-black/10 px-2 py-0.5 text-[11px] leading-4 text-slate-600 dark:border-white/15 dark:text-white/70"
               >
                 {tech}
               </li>
             ))}
           </ul>
         ) : null}
+      </div>
 
+      <div className="mt-auto">
         <span className="mb-2 block text-right text-xs text-slate-500 dark:text-white/50">
           {new Date(date).toDateString()}
         </span>
