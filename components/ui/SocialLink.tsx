@@ -6,7 +6,7 @@ export default function SocialLink({
   label,
   size = 40,
   iconSize = 18,
-  hoverClass = "hover:text-blue-600 dark:hover:text-white",
+  hoverClass = "group-hover:text-blue-600 dark:group-hover:text-white",
 }: {
   href: string;
   icon: IconType;
@@ -16,6 +16,7 @@ export default function SocialLink({
   hoverClass?: string;
 }) {
   const isExternal = /^(https?:|mailto:|tel:)/.test(href);
+  const hitArea = size + 16;
 
   return (
     <a
@@ -23,10 +24,16 @@ export default function SocialLink({
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
       aria-label={isExternal ? `${label} (opens in new tab)` : label}
-      className={`flex items-center justify-center rounded-full border border-black/10 bg-white/60 text-slate-500 transition duration-300 hover:-translate-y-1 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10 ${hoverClass}`}
-      style={{ width: size, height: size }}
+      className="group flex items-center justify-center"
+      style={{ width: hitArea, height: hitArea }}
     >
-      <Icon size={iconSize} />
+      <span
+        className={`flex items-center justify-center rounded-full border border-black/10 bg-white/60 text-slate-500 transition-all! 
+          duration-300 ease-out group-hover:-translate-y-1 group-hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/60 dark:group-hover:bg-white/10 ${hoverClass}`}
+        style={{ width: size, height: size }}
+      >
+        <Icon size={iconSize} />
+      </span>
     </a>
   );
 }

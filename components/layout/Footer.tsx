@@ -26,7 +26,7 @@ export default function Footer() {
           © {year} All rights reserved.
         </p>
 
-        <nav className="flex items-center gap-4">
+        <nav className="flex items-center gap-1">
           {socialLinks.map((link) => (
             <SocialLink
               key={link.label}
