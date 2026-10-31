@@ -29,7 +29,7 @@ export default function PropertyImages({ images, name }: PropertyImagesProps) {
                 height={600}
               >
                 {({ ref, open }) => (
-                  <Image unoptimized
+                  <Image
                     ref={ref}
                     onClick={open}
                     src={image}

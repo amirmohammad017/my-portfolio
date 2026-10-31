@@ -34,7 +34,7 @@ const ProfileProperties = ({
       {properties.map((p) => (
         <div key={p._id} className="mb-10">
           <Link href={`/projects/property-pulse/properties/${p._id}`}>
-            <Image unoptimized
+            <Image
               className="h-32 w-full rounded-md object-cover"
               src={p.images[0]}
               alt={`${p.name} image`}

@@ -26,7 +26,7 @@ export default function ProjectCard({ data }: { data: ProjectItem }) {
         rel={isEmbedded ? undefined : "noopener noreferrer"}
         className="mb-4 flex h-60 w-full items-center justify-center overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5"
       >
-        <Image unoptimized
+        <Image
           src={image?.url || "/images/no-image.png"}
           alt={title}
           width={800}

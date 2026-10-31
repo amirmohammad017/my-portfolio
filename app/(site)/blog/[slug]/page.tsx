@@ -34,7 +34,7 @@ export default async function BlogDetailsPage({ params }: PageProps) {
       </span>
 
       <div className="mb-4 overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5">
-        <Image unoptimized
+        <Image
           className="h-auto w-full object-cover"
           src={blog.image?.url || "/images/no-image.png"}
           alt={blog.title}

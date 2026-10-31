@@ -8,7 +8,7 @@ export default function BlogCard({ data }: { data: BlogPost }) {
   return (
     <article className="surface mb-4 flex h-full w-full flex-col rounded-lg p-4">
       <div className="mb-4 flex h-60 w-full items-center justify-center overflow-hidden rounded-xl bg-slate-200/60 dark:bg-white/5">
-        <Image unoptimized
+        <Image
           src={image?.url || "/images/no-image.png"}
           alt={title}
           width={800}
