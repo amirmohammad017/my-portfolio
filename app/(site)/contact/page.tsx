@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import SocialLink from "@/components/ui/SocialLink";
 import { socialLinks } from "@/lib/site";
+import ContactForm from "@/components/contact/contactForm";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -47,39 +48,7 @@ export default function ContactPage() {
           ))}
         </div>
 
-        <form
-          action="https://formspree.io/f/xrbyzqzq"
-          method="POST"
-          className="space-y-5 text-left"
-        >
-          <input
-            name="name"
-            placeholder="Your Name..."
-            required
-            className={fieldClass}
-          />
-          <input
-            name="email"
-            type="email"
-            placeholder="Your Email..."
-            required
-            className={fieldClass}
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message..."
-            required
-            rows={5}
-            className={`${fieldClass} resize-none`}
-          />
-
-          <button
-            type="submit"
-            className="w-full rounded-lg bg-blue-700 py-3 font-medium text-white transition hover:bg-blue-600"
-          >
-            Send Message
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </section>
   );

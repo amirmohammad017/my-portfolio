@@ -3,9 +3,11 @@ import { redirect } from "next/navigation";
 import { logoutAction } from "@/app/actions/auth/logout";
 import { DeleteBlogButton } from "@/components/admin/DeleteBlogButton";
 import { DeleteProjectButton } from "@/components/admin/DeleteProjectButton";
+import { UnreadMessages } from "@/components/admin/UnreadMessages";
 import { getAdminSession } from "@/lib/auth/session";
 import { getBlogs } from "@/lib/blog/queries";
 import { getProjects } from "@/lib/project/queries";
+import { getMessages } from "@/lib/contact/queries";
 
 export const dynamic = "force-dynamic";
 
@@ -17,10 +19,11 @@ export default async function AdminDashboardPage({
   const session = await getAdminSession();
   if (!session) redirect("/admin/login");
 
-  const [{ saved, deleted }, blogs, projects] = await Promise.all([
+  const [{ saved, deleted }, blogs, projects, messages] = await Promise.all([
     searchParams,
     getBlogs(),
     getProjects(),
+    getMessages(50),
   ]);
 
   return (
@@ -75,6 +78,8 @@ export default async function AdminDashboardPage({
           {deleted === "project" ? "Project" : "Post"} deleted.
         </p>
       ) : null}
+
+      <UnreadMessages messages={messages} />
 
       <h2 className="mb-3 text-lg font-semibold">Blog posts</h2>
       {blogs.length ? (
