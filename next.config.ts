@@ -8,6 +8,7 @@ const hosts = [
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: hosts.map((hostname) => ({
       protocol: "https" as const,
       hostname,
