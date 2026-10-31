@@ -139,6 +139,20 @@ const projects = [
     kind: "embedded",
     internal_path: "/projects/property-pulse",
   },
+  {
+    title: "movie app",
+    slug: "movie-app",
+    description:
+      "A movie and series search app powered by the OMDb API with pagination and a detailed page for ratings, cast and plot. Lives inside this site as an isolated section.",
+    image: img("projects", "movie-app.png"),
+    view_demo: "",
+    source_code: "https://github.com/amirmohammad017/movie-app",
+    date: new Date("2026-06-01"),
+    featured: false,
+    technologies: ["Next.js", "React", "Tailwind CSS", "OMDb API"],
+    kind: "embedded",
+    internal_path: "/projects/movie-app",
+  },
 ];
 
 await mongoose.connect(MONGODB_URI, {
