@@ -1,5 +1,5 @@
 import connectDb from "@/config/database";
-import Message from "@/models/contact/Message";
+import ContactMessageModel from "@/models/contact/ContactMessage";
 
 type MessageDoc = {
   _id: unknown;
@@ -22,7 +22,7 @@ export type ContactMessage = {
 export async function getMessages(limit = 50): Promise<ContactMessage[]> {
   await connectDb();
 
-  const docs = await Message.find({})
+  const docs = await ContactMessageModel.find({})
     .sort({ createdAt: -1 })
     .limit(limit)
     .lean<MessageDoc[]>();

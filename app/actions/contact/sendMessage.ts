@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import connectDb from "@/config/database";
-import Message from "@/models/contact/Message";
+import ContactMessage from "@/models/contact/ContactMessage";
 
 export type ContactState = {
   ok?: boolean;
@@ -16,7 +16,7 @@ export async function sendMessageAction(
   _prevState: ContactState,
   formData: FormData,
 ): Promise<ContactState> {
-  // honeypot: فیلد مخفی که فقط ربات‌ها پر می‌کنند
+  // Honeypot: hidden field that only bots fill in
   if (String(formData.get("website") ?? "")) return { ok: true };
 
   const name = String(formData.get("name") ?? "").trim();
@@ -34,7 +34,7 @@ export async function sendMessageAction(
 
   try {
     await connectDb();
-    await Message.create({ name, email, message });
+    await ContactMessage.create({ name, email, message });
   } catch (error) {
     console.error("sendMessageAction", error);
     return { error: "Could not send your message. Please try again." };
