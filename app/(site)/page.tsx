@@ -26,10 +26,28 @@ export default async function HomePage() {
           {siteConfig.name}
         </h1>
         <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600 dark:text-white/70 md:text-lg">
-          Junior Front-End Developer passionate about building modern,
-          responsive, and high-performance web applications using React and
-          Tailwind CSS.
+          Front-end developer in training, building modern and responsive web
+          applications.
         </p>
+
+        <ul className="mt-6 flex flex-wrap justify-center gap-2.5">
+          {[
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Tailwind CSS",
+            "TanStack Query",
+            "MUI",
+            "MongoDB",
+          ].map((tech) => (
+            <li
+              key={tech}
+              className="rounded-full border border-blue-500/40 bg-blue-500/10 px-3.5 py-1 text-sm font-medium text-slate-800 transition-all duration-200 hover:scale-105 hover:border-blue-500 hover:bg-blue-500/20 dark:text-blue-100"
+            >
+              {tech}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section id="projects">
