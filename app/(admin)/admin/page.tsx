@@ -8,6 +8,11 @@ import { getAdminSession } from "@/lib/auth/session";
 import { getBlogs } from "@/lib/blog/queries";
 import { getProjects } from "@/lib/project/queries";
 import { getMessages } from "@/lib/contact/queries";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export const dynamic = "force-dynamic";
 

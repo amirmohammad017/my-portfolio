@@ -22,7 +22,10 @@ import {
 import { siteConfig } from "@/lib/site";
 import { MdWidgets } from "react-icons/md";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: "About",
+  alternates: { canonical: "https://amirmohammad-dev.ir/about" },
+};
 
 const skillGroups = [
   {
@@ -40,7 +43,7 @@ const skillGroups = [
     title: "Frameworks & Libraries",
     skills: [
       { name: "React", icon: FaReact, color: "#61DAFB" },
-      { name: "Next.js", icon: SiNextdotjs }, 
+      { name: "Next.js", icon: SiNextdotjs },
       { name: "TanStack Query", icon: FaCube, color: "#FF4154" },
       { name: "React Router", icon: SiReactrouter, color: "#CA4245" },
       { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
@@ -54,7 +57,7 @@ const skillGroups = [
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
       { name: "Vite", icon: SiVite, color: "#646CFF" },
       { name: "Git", icon: FaGitAlt, color: "#F05032" },
-      { name: "GitHub", icon: FaGithub }, 
+      { name: "GitHub", icon: FaGithub },
     ],
   },
 ];

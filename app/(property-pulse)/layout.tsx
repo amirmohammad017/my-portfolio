@@ -24,9 +24,14 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Property Pulse",
   description: "Find the perfect rental property.",
+  robots: { index: false, follow: false },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <AuthProvider>
       <GlobalContextProvider>

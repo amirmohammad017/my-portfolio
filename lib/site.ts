@@ -39,7 +39,7 @@ export const socialLinks = [
 export const siteConfig = {
   name: "Amirmohammad Ghofrani",
   shortName: "amirmohammad",
-  title: "amirmohammad-dev",
+  title: "Amirmohammad Ghofrani | Front-End Developer in Training",
   description:
-    "Junior front-end developer building modern, responsive web applications.",
+    "Front-end developer in training building modern, responsive web applications with React and Next.js.",
 };

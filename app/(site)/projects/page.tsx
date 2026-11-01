@@ -4,7 +4,10 @@ import { getProjects } from "@/lib/project/queries";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = { title: "Projects" };
+export const metadata: Metadata = {
+  title: "Projects",
+  alternates: { canonical: "https://amirmohammad-dev.ir/projects" },
+};
 
 export default async function ProjectPage() {
   const projects = await getProjects();

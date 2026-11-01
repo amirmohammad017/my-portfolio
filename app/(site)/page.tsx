@@ -4,6 +4,11 @@ import ProjectCard from "@/components/project/ProjectCard";
 import { getBlogs } from "@/lib/blog/queries";
 import { getProjects } from "@/lib/project/queries";
 import { siteConfig } from "@/lib/site";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://amirmohammad-dev.ir" },
+};
 
 export const dynamic = "force-dynamic";
 

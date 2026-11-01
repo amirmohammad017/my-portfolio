@@ -10,7 +10,10 @@ import SocialLink from "@/components/ui/SocialLink";
 import { socialLinks } from "@/lib/site";
 import ContactForm from "@/components/contact/contactForm";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = {
+  title: "Contact",
+  alternates: { canonical: "https://amirmohammad-dev.ir/contact" },
+};
 
 const icons = {
   github: FaGithub,
@@ -19,9 +22,6 @@ const icons = {
   telegram: FaTelegramPlane,
   email: FaEnvelope,
 };
-
-const fieldClass =
-  "w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30 dark:focus:border-white/20 dark:focus:bg-white/10";
 
 export default function ContactPage() {
   return (
