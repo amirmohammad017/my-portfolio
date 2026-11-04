@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MdOpenInNew } from "react-icons/md";
 import type { ProjectItem } from "@/lib/project/queries";
 
 export default function ProjectCard({ data }: { data: ProjectItem }) {
@@ -24,7 +25,8 @@ export default function ProjectCard({ data }: { data: ProjectItem }) {
         href={isEmbedded ? internalPath : view_demo || "#"}
         target={isEmbedded ? undefined : "_blank"}
         rel={isEmbedded ? undefined : "noopener noreferrer"}
-        className="mb-4 flex h-60 w-full shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5"
+        aria-label={isEmbedded ? `Open ${title}` : `Open ${title} in a new tab`}
+        className="relative mb-4 flex h-60 w-full shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-200/60 dark:bg-white/5"
       >
         <Image
           src={image?.url || "/images/no-image.png"}
@@ -33,18 +35,22 @@ export default function ProjectCard({ data }: { data: ProjectItem }) {
           height={480}
           className="h-full w-full rounded-lg object-cover"
         />
+        {!isEmbedded && (
+          <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full bg-black/50 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+            <MdOpenInNew className="h-3.5 w-3.5" />
+            New tab
+          </span>
+        )}
       </Link>
 
       <h3 className="mb-4 truncate text-center text-xl font-bold capitalize">
         {title}
       </h3>
 
-      {/* ناحیه‌ی ثابت برای توضیحات */}
       <p className="line-clamp-3 h-12 text-xs leading-4 text-slate-600 dark:text-white/80">
         {description}
       </p>
 
-      {/* ناحیه‌ی ثابت برای بج‌ها؛ بیش از دو ردیف پنهان می‌شود */}
       <div className="my-3 h-14 overflow-hidden">
         {technologies?.length ? (
           <ul className="flex flex-wrap gap-2">
@@ -65,33 +71,35 @@ export default function ProjectCard({ data }: { data: ProjectItem }) {
           {new Date(date).toDateString()}
         </span>
 
-        <div className="flex justify-center gap-4">
+        <div className="flex gap-3">
           {isEmbedded ? (
             <Link
               href={internalPath}
-              className="w-36 rounded-xl bg-blue-700 p-3 text-center text-sm font-bold text-white transition hover:bg-blue-600"
+              className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-xl bg-blue-700 px-3 py-3 text-center text-sm font-bold text-white transition hover:bg-blue-600"
             >
-              Demo
+              Open
             </Link>
           ) : (
             <a
-              className="w-36 rounded-xl bg-blue-700 p-3 text-center text-sm font-bold text-white transition hover:bg-blue-600"
+              className="inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-blue-700 px-3 py-3 text-center text-sm font-bold text-white transition hover:bg-blue-600"
               href={view_demo}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Demo
+              Live Demo
+              <MdOpenInNew className="h-4 w-4 shrink-0" />
             </a>
           )}
 
           {source_code ? (
             <a
-              className="w-36 rounded-xl bg-green-600 p-3 text-center text-sm font-bold text-white transition hover:bg-green-500"
+              className="inline-flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl bg-green-600 px-3 py-3 text-center text-sm font-bold text-white transition hover:bg-green-500"
               href={source_code}
               target="_blank"
               rel="noopener noreferrer"
             >
               Source Code
+              <MdOpenInNew className="h-4 w-4 shrink-0" />
             </a>
           ) : null}
         </div>
